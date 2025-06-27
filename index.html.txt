@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ÉclatDerm – Discover Your Glow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --accent: #e1bebe;
+            --gold: #c7a27c;
+            --bg: #faf8f7;
+            --gray: #888;
+            --headline: 'Playfair Display', serif;
+            --body: 'Lato', Arial, sans-serif;
+        }
+        body {
+            margin: 0; background: var(--bg); color: #333;
+            font-family: var(--body);
+        }
+        header {
+            background: white;
+            padding: 1.5rem 0.5rem 1rem 0.5rem;
+            box-shadow: 0 2px 10px #ececec;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .container {
+            max-width: 1200px; margin: auto; padding: 0 1rem;
+        }
+        nav {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo {
+            font-family: var(--headline);
+            font-size: 2rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+        nav ul {
+            list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0;
+        }
+        nav ul li a {
+            color: #333; text-decoration: none; font-weight: bold;
+            font-size: 1rem; transition: color 0.2s;
+        }
+        nav ul li a:hover { color: var(--accent); }
+        .search-bar {
+            margin: 2.5rem auto 1.5rem auto; display: flex; max-width: 600px;
+        }
+        .search-bar input[type="text"] {
+            flex: 1; padding: 1rem; border: 1px solid #ddd;
+            border-radius: 2rem 0 0 2rem; font-size: 1.1rem;
+            outline: none;
+        }
+        .search-bar button {
+            background: var(--gold); color: #fff; border: none;
+            border-radius: 0 2rem 2rem 0; padding: 0 2rem;
+            font-size: 1.1rem; cursor: pointer;
+            font-family: var(--headline);
+        }
+        .headline {
+            font-family: var(--headline); font-size: 2.3rem;
+            text-align: center; color: #555; margin: 2.5rem 0 1rem 0;
+            font-weight: 700;
+        }
+        .categories, .trending-brands, .forum {
+            margin: 2rem 0;
+        }
+        .categories-list, .brands-list {
+            display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+        }
+        .category, .brand-card {
+            background: #fff;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            box-shadow: 0 2px 8px #eaeaea;
+            text-align: center;
+            font-size: 1.05rem;
+            min-width: 120px;
+            margin-bottom: 1rem;
+        }
+        .brand-card {
+            min-width: 170px; position: relative;
+        }
+        .verified {
+            font-size: 0.85rem; color: #6cbb59;
+            background: #f2fff0; padding: 0.1rem 0.6rem;
+            border-radius: 1rem; margin-left: 0.5rem;
+        }
+        .brands-list img {
+            border-radius: 1.2rem; margin-bottom: 0.5rem;
+            width: 60px; height: 60px; object-fit: cover;
+            box-shadow: 0 1px 6px #e5e5e5;
+        }
+        /* Product Card */
+        .product-card {
+            max-width: 340px; background: #fff;
+            border-radius: 2rem; margin: 2rem auto 1rem auto;
+            box-shadow: 0 2px 12px #ececec;
+            padding: 1.2rem 1.5rem;
+        }
+        .product-card img {
+            width: 100%; border-radius: 1.5rem;
+            max-height: 190px; object-fit: cover;
+        }
+        .product-info {
+            margin-top: 1rem;
+        }
+        .product-title {
+            font-family: var(--headline); font-size: 1.35rem;
+            margin-bottom: 0.4rem; font-weight: 600;
+        }
+        .stars {
+            color: gold; font-size: 1.1rem;
+        }
+        .product-actions button {
+            background: var(--accent); color: #fff; border: none;
+            border-radius: 2rem; padding: 0.5rem 1.3rem;
+            margin: 0.5rem 0.5rem 0 0; cursor: pointer;
+            font-size: 1rem;
+        }
+        /* Forum */
+        .forum-threads {
+            background: #fff; border-radius: 1.2rem;
+            box-shadow: 0 2px 8px #ededed; padding: 1.2rem 1.2rem;
+            max-width: 760px; margin: 0 auto;
+        }
+        .thread {
+            border-bottom: 1px solid #f1eaea; padding: 1rem 0;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .thread:last-child { border-bottom: none; }
+        .thread-title { font-weight: 600; color: #4b4949;}
+        .thread-meta { color: #999; font-size: 0.93rem; }
+        /* Footer */
+        footer {
+            background: #fff; color: #888; text-align: center;
+            padding: 2rem 1rem 1.2rem 1rem; margin-top: 3rem;
+            font-size: 1rem; border-top: 1px solid #eee;
+        }
+        @media (max-width: 800px) {
+            .categories-list, .brands-list { flex-direction: column; align-items: center;}
+            .product-card { margin: 2rem 0.7rem; }
+            .forum-threads { padding: 1rem 0.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header>
+        <div class="container">
+            <nav>
+                <span class="logo">ÉclatDerm</span>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Brands</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">My Routine</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="container">
+        <form class="search-bar" action="#">
+            <input type="text" placeholder="Search for a product, brand, or concern..." />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Categories -->
+    <section class="categories container">
+        <div class="headline">Shop by Category</div>
+        <div class="categories-list">
+            <div class="category">Moisturizers</div>
+            <div class="category">Serums</div>
+            <div class="category">Cleansers</div>
+            <div class="category">Sunscreens</div>
+            <div class="category">Acne Care</div>
+            <div class="category">Sheet Masks</div>
+            <div class="category">Eye Creams</div>
+            <div class="category">Lip Care</div>
+        </div>
+    </section>
+
+    <!-- Trending Brands -->
+    <section class="trending-brands container">
+        <div class="headline">Trending Brands</div>
+        <div class="brands-list">
+            <div class="brand-card">
+                <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=facearea&w=400&h=400&q=80" alt="Brand 1" />
+                <div><b>The Ordinary</b><span class="verified">✔ Verified</span></div>
+            </div>
+            <div class="brand-card">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=400&q=80" alt="Brand 2" />
+                <div><b>COSRX</b><span class="verified">✔ Verified</span></div>
+            </div>
+            <div class="brand-card">
+                <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=facearea&w=400&h=400&q=80" alt="Brand 3" />
+                <div><b>La Roche-Posay</b></div>
+            </div>
+            <div class="brand-card">
+                <img src="https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?auto=format&fit=facearea&w=400&h=400&q=80" alt="Brand 4" />
+                <div><b>CeraVe</b></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Product Card -->
+    <div class="container">
+        <div class="headline">Featured Product</div>
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=facearea&w=500&h=320&q=80" alt="Product Example">
+            <div class="product-info">
+                <div class="product-title">CeraVe Hydrating Cleanser</div>
+                <div class="stars">★★★★★ 4.7 (256 reviews)</div>
+                <p style="font-size:1rem; color:#666;">A gentle, non-foaming cleanser for dry to normal skin. Contains ceramides and hyaluronic acid to hydrate and restore your skin barrier.</p>
+                <div class="product-actions">
+                    <button>Add to My Routine</button>
+                    <button>Write a Review</button>
+                    <button>Buy on Daraz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forum Teaser -->
+    <section class="forum container">
+        <div class="headline">From the Community</div>
+        <div class="forum-threads">
+            <div class="thread">
+                <div>
+                    <div class="thread-title">Best Sunscreens for Oily Skin?</div>
+                    <div class="thread-meta">23 replies • 4h ago • Skincare Q&A</div>
+                </div>
+                <a href="#" style="color:var(--accent);text-decoration:none;font-weight:700;">View</a>
+            </div>
+            <div class="thread">
+                <div>
+                    <div class="thread-title">Post Your Before/After Pictures!</div>
+                    <div class="thread-meta">17 replies • 1d ago • Share Your Routine</div>
+                </div>
+                <a href="#" style="color:var(--accent);text-decoration:none;font-weight:700;">View</a>
+            </div>
+            <div class="thread">
+                <div>
+                    <div class="thread-title">Ingredient Check: Safe for Pregnancy?</div>
+                    <div class="thread-meta">11 replies • 2d ago • Ingredients</div>
+                </div>
+                <a href="#" style="color:var(--accent);text-decoration:none;font-weight:700;">View</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 ÉclatDerm. Built for skincare lovers in Pakistan.<br>
+        <small>Not affiliated with brands shown. For demo only.</small>
+    </footer>
+</body>
+</html>
